@@ -31,21 +31,3 @@ class PostSerializer(serializers.ModelSerializer):
         if obj.image:
             return request.build_absolute_uri(obj.image.url)
         return None
-
-
-class MovieNameSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MovieName
-        fields = ('nameEn', 'nameTr', 'nameAr', 'nameFr', 'year')
-
-
-class ListSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = List
-        fields = ('name_trans',)
-
-
-class SiteSettingsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SiteSettings
-        fields = ('language',)

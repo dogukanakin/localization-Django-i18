@@ -10,6 +10,3 @@ class OurAdminPanel(TranslatableAdmin):
 
 admin.site.register(Post, OurAdminPanel)
 admin.site.register(Category, TranslatableAdmin)
-admin.site.register(MovieName)
-admin.site.register(List)
-admin.site.register(SiteSettings)

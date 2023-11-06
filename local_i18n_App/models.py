@@ -48,38 +48,3 @@ class MovieName(models.Model):
 
     def __str__(self):
         return self.nameEn
-
-
-class List(models.Model):
-    name = models.CharField(max_length=500, null=True,
-                            blank=True, verbose_name="Sektör Tanımı")
-    name_en = models.CharField(
-        max_length=500, null=True, blank=True, verbose_name="Sektör Tanımı (İngilizce)")
-
-    def __str__(self):
-        return self.name
-
-    def name_trans(self):
-        site_settings = SiteSettings.objects.first()
-        if site_settings.language == "en":
-            return self.name_en
-        elif site_settings.language == "tr":
-            return self.name
-        else:
-            return ""
-
-    def name_trans2(self):
-        language = ""
-        if language == "en":
-            return self.name_en
-        elif language == "tr":
-            return self.name
-        else:
-            return ""
-
-
-class SiteSettings(models.Model):
-    language = models.CharField(max_length=10, null=True, blank=True)
-
-    def __str__(self):
-        return self.language

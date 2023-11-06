@@ -1,19 +1,12 @@
-from .serializers import ListSerializer
-from .models import List
+from .serializers import *
 from rest_framework import generics
 from django.contrib.admin.templatetags.admin_urls import admin_urlname
 from django.shortcuts import render
-from .models import Category, Post
-from django.contrib import messages
+from .models import *
 from django.utils.translation import gettext_lazy as _
 from rest_framework.decorators import api_view
 from rest_framework import status
-from .serializers import *
 from rest_framework.response import Response
-from django.urls import reverse
-from django.http import HttpResponseRedirect
-from django.conf import settings
-from django.utils import translation
 
 
 def index(request):
@@ -70,63 +63,4 @@ def category_list(request):
             serializer.save()
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(['GET', 'POST'])
-def movie_list(request):
-    if request.method == 'GET':
-        movies = MovieName.objects.all()
-        serializer = MovieNameSerializer(movies, many=True)
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = MovieNameSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(['GET', 'POST'])
-def list_list(request):
-    if request.method == 'GET':
-        lists = List.objects.all()
-        serializer = ListSerializer(lists, many=True)
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = ListSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(['GET', 'POST', 'PUT',])
-def settings_list(request):
-    if request.method == 'GET':
-        settings = SiteSettings.objects.all()
-
-        # Dil ayarını isteğe göre güncelle
-        if 'language' in request.GET:
-            settings.language = request.GET['language']
-            settings.save()
-
-        serializer = SiteSettingsSerializer(settings, many=True)
-        return Response(serializer.data)
-    elif request.method == 'POST':
-        serializer = SiteSettingsSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'PUT':
-        settings = SiteSettings.objects.get()
-        serializer = SiteSettingsSerializer(settings, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-
-            return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

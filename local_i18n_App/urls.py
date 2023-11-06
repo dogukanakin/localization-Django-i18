@@ -10,7 +10,4 @@ urlpatterns = [
     # lang değişkenini yakalamak için <str> kullanın
     path('api/posts/', post_list, name='post-list'),
     path('api/categories/', views.category_list),
-    path('api/movies/', views.movie_list),
-    path('api/settings/', views.settings_list),
-    path('api/lists/', views.list_list),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
