@@ -37,14 +37,3 @@ class Post(TranslatableModel):
 
     def __str__(self):
         return self.title
-
-
-class MovieName(models.Model):
-    nameEn = models.CharField(max_length=100)
-    nameTr = models.CharField(max_length=100)
-    nameAr = models.CharField(max_length=100)
-    nameFr = models.CharField(max_length=100)
-    year = models.IntegerField()
-
-    def __str__(self):
-        return self.nameEn
