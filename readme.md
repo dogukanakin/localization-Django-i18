@@ -2,6 +2,8 @@
 
 This is a Django project that demonstrates how to implement internationalization (i18n) and localization (l10n) in a Django application. It includes examples of translating static text, templates, and database content.
 
+## Medium: https://medium.com/@dogukannakin/django-rest-framework-localization-and-internationalization-690dddfae8cc
+
 ## Table of Contents
 
 - [Requirements](#requirements)
